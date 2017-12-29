@@ -85,7 +85,7 @@ public class Main {
 			}
 		}
 		else {
-			System.out.println("Error loading or loading cancelled by user");
+			//System.out.println("Error loading or loading cancelled by user");
 			return;
 		}
 		
@@ -118,7 +118,7 @@ public class Main {
 			}
 		}
 		else {
-			System.out.println("Error saving or save cancelled by user");
+			//System.out.println("Error saving or save cancelled by user");
 			return;
 		}
 		

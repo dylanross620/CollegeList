@@ -8,10 +8,13 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Window extends JFrame{
 	
@@ -21,6 +24,21 @@ public class Window extends JFrame{
 	
 	public Window(Main main) {
 		super("College List");
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		this.main = main;
 		
 		setSize(900, 500);
@@ -36,6 +54,12 @@ public class Window extends JFrame{
 		list.setRows(11);
 		list.setText("College:\tNum Appearances:");
 		pane.add(list);
+		
+		JButton allButton = new JButton("Show All");
+		allButton.addActionListener((e) -> printFull());
+		JPanel allPanel = new JPanel();
+		allPanel.add(allButton);
+		pane.add(allPanel);
 		
 		JPanel collegePane = new JPanel();
 		collegePane.setLayout(new FlowLayout());
@@ -87,9 +111,33 @@ public class Window extends JFrame{
 		else
 			x = 10;
 		for (int i = 0; i < x; i++) {
-			text += "\n" + collegeList.get(i).getName() + "\t" + collegeList.get(i).getNumAppear();
+			text += "\n" + (i + 1) + ": " + collegeList.get(i).getName() + "\t" + collegeList.get(i).getNumAppear();
 		}
 		
 		list.setText(text);
+	}
+	
+	public void printFull() {
+		JDialog fullList = new JDialog(this, "College List");
+		fullList.setResizable(false);
+		fullList.setAlwaysOnTop(true);
+		
+		JTextArea listFull = new JTextArea();
+		listFull.setEditable(false);
+		listFull.setRows(21);
+		
+		List<College> collegeList = main.getCollegeList();
+		
+		String text = "College:\tNum Appearances:";
+		for (int i = 0; i < collegeList.size(); i++) {
+			text += "\n" + (i + 1) + ": " + collegeList.get(i).getName() + "\t" + collegeList.get(i).getNumAppear();
+		}	
+		listFull.setText(text);
+		
+		fullList.getContentPane().add(listFull);
+		fullList.pack();
+		fullList.setLocationRelativeTo(null);
+		fullList.setModal(true);
+		fullList.setVisible(true);
 	}
 }
