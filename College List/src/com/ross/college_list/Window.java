@@ -168,7 +168,7 @@ public class Window extends JFrame{
 			String nameAdd = "\n" + (i + 1) + ": " + collegeList.get(i).getName();
 			nameText += nameAdd;
 			numText += "\n" + collegeList.get(i).getNumAppear();
-			if (nameAdd.length() != 20) {
+			if (nameAdd.length() != 21 && nameAdd.length() != 22) {
 				for (int n = 0; n < (nameAdd.length() / nameList.getColumns()) - .5; n++)
 					numText += "\n";
 			}
