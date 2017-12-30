@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -55,14 +56,18 @@ public class Window extends JFrame{
 		nameList.setColumns(21);
 		nameList.setText("College:");
 		nameList.setLineWrap(true);
-		listPanel.add(nameList);
+		JScrollPane nameScroll = new JScrollPane(nameList);
+		listPanel.add(nameScroll);
 		numList = new JTextArea();
 		numList.setEditable(false);
 		numList.setRows(11);
 		numList.setText("Num Appearances:");
-		numList.setColumns(numList.getText().length() + 1);
+		numList.setColumns(19);
 		numList.setLineWrap(true);
-		listPanel.add(numList);
+		JScrollPane numScroll = new JScrollPane(numList);
+		numScroll.setRowHeaderView(nameScroll);
+		numScroll.setVerticalScrollBar(nameScroll.getVerticalScrollBar());
+		listPanel.add(numScroll);
 		pane.add(listPanel);
 		
 		JButton allButton = new JButton("Show All");
@@ -150,7 +155,7 @@ public class Window extends JFrame{
 		JTextArea numsFull = new JTextArea();
 		numsFull.setEditable(false);
 		numsFull.setRows(21);
-		numsFull.setColumns("Num Appearances:".length() + 1);
+		numsFull.setColumns(19);
 		numsFull.setLineWrap(true);
 		
 		List<College> collegeList = main.getCollegeList();
@@ -167,8 +172,12 @@ public class Window extends JFrame{
 		namesFull.setText(nameText);
 		numsFull.setText(numText);
 		
-		listPane.add(namesFull);
-		listPane.add(numsFull);
+		JScrollPane namesScroll = new JScrollPane(namesFull);
+		JScrollPane numsScroll = new JScrollPane(numsFull);
+		numsScroll.setVerticalScrollBar(namesScroll.getVerticalScrollBar());
+		
+		listPane.add(namesScroll);
+		listPane.add(numsScroll);
 		
 		fullList.getContentPane().add(listPane);
 		fullList.pack();

@@ -1,6 +1,5 @@
 package com.ross.college_list;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 
 public class Main {
 
