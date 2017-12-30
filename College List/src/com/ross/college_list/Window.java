@@ -61,7 +61,7 @@ public class Window extends JFrame{
 		numList.setEditable(false);
 		numList.setRows(11);
 		numList.setText("Num Appearances:");
-		numList.setColumns(numList.getText().length());
+		numList.setColumns(numList.getText().length() + 1);
 		numList.setLineWrap(true);
 		listPanel.add(numList);
 		pane.add(listPanel);
@@ -150,7 +150,7 @@ public class Window extends JFrame{
 		JTextArea numsFull = new JTextArea();
 		numsFull.setEditable(false);
 		numsFull.setRows(21);
-		numsFull.setColumns("Num Appearances:".length());
+		numsFull.setColumns("Num Appearances:".length() + 1);
 		numsFull.setLineWrap(true);
 		
 		List<College> collegeList = main.getCollegeList();
