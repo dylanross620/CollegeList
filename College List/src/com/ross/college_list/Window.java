@@ -131,8 +131,10 @@ public class Window extends JFrame{
 			String nameAdd = "\n" + (i + 1) + ": " + collegeList.get(i).getName();
 			nameText += nameAdd;
 			numText += "\n" + collegeList.get(i).getNumAppear();
-			for (int n = 0; n < (int) nameAdd.length() / (nameList.getColumns() - 1); n++)
-				numText += "\n";
+			if (nameAdd.length() != 21 && nameAdd.length() != 22) {
+				for (int n = 0; n < (nameAdd.length() / nameList.getColumns()) - .5; n++)
+					numText += "\n";
+			}
 		}
 		
 		nameList.setText(nameText);
@@ -166,8 +168,10 @@ public class Window extends JFrame{
 			String nameAdd = "\n" + (i + 1) + ": " + collegeList.get(i).getName();
 			nameText += nameAdd;
 			numText += "\n" + collegeList.get(i).getNumAppear();
-			for (int n = 0; n < (int) nameAdd.length() / (nameList.getColumns() - 1); n++)
-				numText += "\n";
+			if (nameAdd.length() != 20) {
+				for (int n = 0; n < (nameAdd.length() / nameList.getColumns()) - .5; n++)
+					numText += "\n";
+			}
 		}
 		namesFull.setText(nameText);
 		numsFull.setText(numText);
