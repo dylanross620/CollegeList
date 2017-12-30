@@ -99,12 +99,13 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		win.printList();
+		win.printList();		
 	}
 	
 	public void save() {
 		JFileChooser fc = new JFileChooser();
 		fc.setCurrentDirectory(null);
+		fc.setFileFilter(new Filter());
 		
 		FileOutputStream out = null;
 		if (fc.showSaveDialog(win) == JFileChooser.APPROVE_OPTION) {

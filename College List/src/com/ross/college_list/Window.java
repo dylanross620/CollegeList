@@ -43,7 +43,6 @@ public class Window extends JFrame{
 		
 		setSize(900, 500);
 		setResizable(false);
-		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Container pane = getContentPane();
@@ -53,7 +52,7 @@ public class Window extends JFrame{
 		nameList = new JTextArea();
 		nameList.setEditable(false);
 		nameList.setRows(11);
-		nameList.setColumns(20);
+		nameList.setColumns(21);
 		nameList.setText("College:");
 		nameList.setLineWrap(true);
 		listPanel.add(nameList);
@@ -109,6 +108,7 @@ public class Window extends JFrame{
 		
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void printList() {

@@ -8,6 +8,8 @@ public class Filter extends FileFilter{
 
 		@Override
 		public boolean accept(File file) {
+			if (file.isDirectory())
+				return true;
 			return file.toString().endsWith(".clg");
 		}
 
