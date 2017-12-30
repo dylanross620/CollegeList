@@ -151,7 +151,7 @@ public class Window extends JFrame{
 		JTextArea namesFull = new JTextArea();
 		namesFull.setEditable(false);
 		namesFull.setRows(21);
-		namesFull.setColumns(20);
+		namesFull.setColumns(21);
 		namesFull.setLineWrap(true);
 		
 		JTextArea numsFull = new JTextArea();
