@@ -20,7 +20,7 @@ public class Window extends JFrame{
 	
 	private Main main;
 	
-	private JTextArea list;
+	private JTextArea nameList, numList;
 	
 	public Window(Main main) {
 		super("College List");
@@ -49,11 +49,22 @@ public class Window extends JFrame{
 		Container pane = getContentPane();
 		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 		
-		list = new JTextArea();
-		list.setEditable(false);
-		list.setRows(11);
-		list.setText("College:\tNum Appearances:");
-		pane.add(list);
+		JPanel listPanel = new JPanel();
+		nameList = new JTextArea();
+		nameList.setEditable(false);
+		nameList.setRows(11);
+		nameList.setColumns(20);
+		nameList.setText("College:");
+		nameList.setLineWrap(true);
+		listPanel.add(nameList);
+		numList = new JTextArea();
+		numList.setEditable(false);
+		numList.setRows(11);
+		numList.setText("Num Appearances:");
+		numList.setColumns(numList.getText().length());
+		numList.setLineWrap(true);
+		listPanel.add(numList);
+		pane.add(listPanel);
 		
 		JButton allButton = new JButton("Show All");
 		allButton.addActionListener((e) -> printFull());
@@ -103,7 +114,8 @@ public class Window extends JFrame{
 	public void printList() {
 		List<College> collegeList = main.getCollegeList();
 		
-		String text = "College:\tNum Appearances:";
+		String nameText = "College:";
+		String numText = "Num Appearances:";
 		
 		int x;
 		if (collegeList.size() < 10)
@@ -111,10 +123,15 @@ public class Window extends JFrame{
 		else
 			x = 10;
 		for (int i = 0; i < x; i++) {
-			text += "\n" + (i + 1) + ": " + collegeList.get(i).getName() + "\t" + collegeList.get(i).getNumAppear();
+			String nameAdd = "\n" + (i + 1) + ": " + collegeList.get(i).getName();
+			nameText += nameAdd;
+			numText += "\n" + collegeList.get(i).getNumAppear();
+			for (int n = 0; n < (int) nameAdd.length() / (nameList.getColumns() - 1); n++)
+				numText += "\n";
 		}
 		
-		list.setText(text);
+		nameList.setText(nameText);
+		numList.setText(numText);
 	}
 	
 	public void printFull() {
@@ -122,19 +139,38 @@ public class Window extends JFrame{
 		fullList.setResizable(false);
 		fullList.setAlwaysOnTop(true);
 		
-		JTextArea listFull = new JTextArea();
-		listFull.setEditable(false);
-		listFull.setRows(21);
+		JPanel listPane = new JPanel();
+		
+		JTextArea namesFull = new JTextArea();
+		namesFull.setEditable(false);
+		namesFull.setRows(21);
+		namesFull.setColumns(20);
+		namesFull.setLineWrap(true);
+		
+		JTextArea numsFull = new JTextArea();
+		numsFull.setEditable(false);
+		numsFull.setRows(21);
+		numsFull.setColumns("Num Appearances:".length());
+		numsFull.setLineWrap(true);
 		
 		List<College> collegeList = main.getCollegeList();
 		
-		String text = "College:\tNum Appearances:";
+		String nameText = "College:";
+		String numText = "Num Appearances:";
 		for (int i = 0; i < collegeList.size(); i++) {
-			text += "\n" + (i + 1) + ": " + collegeList.get(i).getName() + "\t" + collegeList.get(i).getNumAppear();
-		}	
-		listFull.setText(text);
+			String nameAdd = "\n" + (i + 1) + ": " + collegeList.get(i).getName();
+			nameText += nameAdd;
+			numText += "\n" + collegeList.get(i).getNumAppear();
+			for (int n = 0; n < (int) nameAdd.length() / (nameList.getColumns() - 1); n++)
+				numText += "\n";
+		}
+		namesFull.setText(nameText);
+		numsFull.setText(numText);
 		
-		fullList.getContentPane().add(listFull);
+		listPane.add(namesFull);
+		listPane.add(numsFull);
+		
+		fullList.getContentPane().add(listPane);
 		fullList.pack();
 		fullList.setLocationRelativeTo(null);
 		fullList.setModal(true);
